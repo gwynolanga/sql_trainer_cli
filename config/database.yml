@@ -1,0 +1,46 @@
+# DATABASE FILE NAMING CONVENTIONS:
+#
+# 1. CONFIGURATION KEY:
+#    Format: <domain>_<adapter>
+#    Examples: learn_hub_postgresql, shop_mysql2, blog_sqlite3
+#
+# 2. DATABASE NAME:
+#    - PostgreSQL/MySQL: <domain>
+#      Examples: learn_hub, shop, blog
+#
+#    - SQLite: db/<domain>/<domain>.sqlite3
+#      Examples: db/learn_hub/learn_hub.sqlite3, db/shop/shop.sqlite3
+#
+# 3. FILE STRUCTURE:
+#    models/<domain>/               # ActiveRecord models
+#    db/<domain>/migrate/           # Database migrations
+#    db/<domain>/seeds.rb           # Seed data
+#    db/<domain>/<domain>.sqlite3   # SQLite database (if using SQLite)
+
+learn_hub_postgresql:
+  adapter: postgresql
+  encoding: unicode
+  database: learn_hub
+  pool: 5
+  username: <%= ENV["POSTGRESQL_DB_USERNAME"] %>
+  password: <%= ENV["POSTGRESQL_DB_PASSWORD"] %>
+  host: <%= ENV["POSTGRESQL_DB_HOST"] %>
+  port: <%= ENV["POSTGRESQL_DB_PORT"] %>
+
+learn_hub_mysql2:
+  adapter: mysql2
+  encoding: utf8mb4
+  database: learn_hub
+  pool: 5
+  username: <%= ENV["MYSQL2_DB_USERNAME"] %>
+  password: <%= ENV["MYSQL2_DB_PASSWORD"] %>
+  host: <%= ENV["MYSQL2_DB_HOST"] %>
+  port: <%= ENV["MYSQL2_DB_PORT"] %>
+
+learn_hub_sqlite3:
+  adapter: sqlite3
+  database: db/learn_hub/learn_hub.sqlite3
+  pool: 5
+  timeout: 5000
+  pragmas:
+    journal_mode: DELETE

@@ -1,0 +1,134 @@
+console:
+  output_width: 100
+  max_string_length: 150
+  prompts:
+    disconnected: "sql-trainer> "
+    connected: "sql-trainer [%s]> "
+  messages:
+    welcome_title: "SQL Trainer Console"
+    welcome_subtitle: "SQL and ActiveRecord Query Trainer"
+    help: "\nType 'help' for help with commands."
+    goodbye: "Goodbye."
+    unknown_command: "Unknown command. Type 'help' for help."
+    interrupt: "Use 'exit', 'quit' or 'q' command to exit the console."
+    no_connection: "No active connection to the database."
+    success_connected: "Successfully connected to the database!"
+    success_disconnected: "Successfully disconnected from the database."
+    connecting: "Connecting to the database using key %s..."
+    rake_while_connected: "Cannot execute rake task '%s' while connected to database '%s'. Please disconnect first using 'disconnect' command."
+  colors:
+    primary: light_cyan
+    secondary: light_magenta
+    success: light_green
+    error: light_red
+    warning: light_yellow
+    info: light_blue
+    muted: light_black
+formatter:
+  table:
+    border_x: "-"
+    border_i: "+"
+    padding_left: 1
+    padding_right: 1
+  footer:
+    row_singular: "row"
+    row_plural: "rows"
+    separator: " | "
+  associations:
+    has_many:
+      label: "Has Many:"
+      color: secondary
+    has_one:
+      label: "Has One:"
+      color: secondary
+    belongs_to:
+      label: "Belongs To:"
+      color: secondary
+    has_and_belongs_to_many:
+      label: "Has And Belongs To Many:"
+      color: secondary
+schema:
+  system_tables:
+    - schema_migrations
+    - ar_internal_metadata
+  messages:
+    no_data: "Query returned no data."
+    no_explain: "The SQL query execution plan does not exist."
+    no_connection: "No active connection to the database."
+    no_tables: "No tables in the database."
+    no_records: "Query returned no records."
+    no_model: "Model for table '%s' not found."
+    no_models: "No models found. Please make sure the models are loaded."
+validator:
+  forbidden_sql_commands:
+    - INSERT
+    - UPDATE
+    - DELETE
+    - DROP
+    - CREATE
+    - ALTER
+    - TRUNCATE
+    - GRANT
+    - REVOKE
+    - EXEC
+    - EXECUTE
+    - CALL
+    - MERGE
+    - REPLACE
+    - COMMIT
+    - ROLLBACK
+    - SAVEPOINT
+    - LOCK
+    - UNLOCK
+  forbidden_ar_methods:
+    - create
+    - create!
+    - create_or_find_by
+    - create_or_find_by!
+    - find_or_create_by
+    - find_or_create_by!
+    - update
+    - update!
+    - update_attribute
+    - update_attribute!
+    - update_column
+    - update_columns
+    - update_all
+    - update_counters
+    - upsert
+    - upsert_all
+    - save
+    - save!
+    - increment
+    - increment!
+    - decrement
+    - decrement!
+    - toggle
+    - toggle!
+    - touch
+    - insert
+    - insert!
+    - insert_all
+    - insert_all!
+    - delete
+    - delete_all
+    - delete_by
+    - destroy
+    - destroy!
+    - destroy_all
+    - destroy_by
+  messages:
+    empty_sql: "SQL query cannot be empty."
+    empty_ar: "AR query cannot be empty."
+    forbidden_sql: "Disallowed SQL command: '%s'. Only SELECT queries are allowed."
+    forbidden_ar: "Disallowed AR method '%s'. Only data reading methods are allowed."
+    dangerous_sql: "Dangerous pattern in SQL query: '%s'."
+    dangerous_ar: "Dangerous pattern in AR query: '%s'."
+database:
+  system_databases:
+    postgresql: postgres
+    mysql2: mysql
+  supported_adapters:
+    - postgresql
+    - mysql2
+    - sqlite3
